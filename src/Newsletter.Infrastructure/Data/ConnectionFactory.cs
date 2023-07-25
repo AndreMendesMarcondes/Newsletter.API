@@ -5,11 +5,13 @@ namespace Newsletter.Infrastructure.Data;
 
 public class ConnectionFactory
 {
+    private readonly IConfiguration _configuration;
     private readonly string _connectionString;
-
-    public ConnectionFactory(string connectionString)
+    
+    public ConnectionFactory(IConfiguration configuration)
     {
-        _connectionString = connectionString;
+        _configuration = configuration;
+        _connectionString = _configuration["MyConnectionString"];
     }
 
     public IDbConnection CreateConnection()
